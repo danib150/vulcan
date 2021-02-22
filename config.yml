@@ -45,8 +45,7 @@ alerts:
   # This is a fully customizable list of commands that will be executed each time a player flags a check, just in case
   # you want to do anything special when they flag without needing to use the API. All valid placeholders are the same
   # as listed above once again.
-  custom-commands:
-    - "corneaalert %player% %check% %type% %vl% %max-vl%"
+  custom-commands: []
   # You can use this section to color code your alerts or add chances to them depending on the violation level.
   severity:
     violations:
@@ -104,7 +103,7 @@ violation-reset:
   # Whether or not violations should reset automatically
   enabled: true
   # The interval (in minutes) in which violations should automatically be reset.
-  interval-in-minutes: 3
+  interval-in-minutes: 4
   # Whether or not a message will be sent when violations are reset (this is only sent to staff who have /alerts enabled).
   message-enabled: false
   # The message that is sent (only to staff with /alerts enabled) when violations are reset.
@@ -116,9 +115,9 @@ client-brand-alerts:
   # the messaging channel at all.
   resolve: true
   # Whether or not client brand alerts are enabled.
-  enabled: true
+  enabled: false
   # Whether or not Vanilla brand messages will be sent.
-  ignore-vanilla: true
+  ignore-vanilla: false
   # The message sent when a player joins the server. Valid placeholder are %player (player name), %prefix% (plugin prefix),
   # %client-brand% (the user's client brand), and %client-version% (the user's client version).
   message: '%prefix% &c%player% &7joined using &b%client-brand%&7!'
@@ -168,7 +167,7 @@ join-message:
 # Whether or not staff will /alerts enabled will be notified when players get kicked for any of these reasons by
 # Spigot itself (these are just messages, Vulcan is not actually kicking the player for any of these things)
 kick-alert-messages:
-  enabled: true
+  enabled: false
   messages:
     flying-not-enabled: '%prefix% &c%player% &7was kicked for &bFlying is Not Enabled&7!'
     invalid-move-packet: '%prefix% &c%player% &7was kicked for &bInvalid Movement Packet&7!'
@@ -273,7 +272,7 @@ commands:
   ban:
     # The commands that will be executed when /vulcan ban (player) is executed
     commands:
-      - 'ban %player% &c[Vulcan] Unfair Advantage'
+      - 'corneaban %player%'
     # The messages that will be broadcast when /vulcan ban (player) is executed
     broadcast:
       - "&7&m---»--*-------------------------------------*--«---"
@@ -294,6 +293,10 @@ commands:
     - " &8» &7Combat: &c%combat-violations%"
     - " &8» &7Movement: &c%movement-violations%"
     - " &8» &7Player: &c%player-violations%"
+    - ""
+    - "&7Collisions:"
+    - "&8» &7Nearby Blocks: %nearby-blocks%"
+    - "&8» &7Nearby Entities: %nearby-entities%"
     - "&7&m---»--*-------------------------------------*--«---"
   cps: "%prefix% &7CPS for &c%player%&7: &c%cps%"
   connection:
@@ -339,8 +342,6 @@ settings:
   # A setting for PacketEvents, we may ask you to change this if you're having issues injecting. If everything is working
   # fine, don't touch this.
   inject-early: true
-  # Cancels some illegal teleports performed by hacked clients. Recommended to enable
-  cancel-unknown-teleports: false
   # This is the time (in ticks - 20 ticks per second - default value is 50 (2.5 seconds)) of how long players should be exempt from certain
   # checks after velocity gets applied to them via another plugin or something (such as Launchpads, crate plugins, etc etc).
   max-velocity-ticks: 50
@@ -366,7 +367,7 @@ settings:
   # need to be called at all (they are also forced to be called sync, so this is a win win performance gain)
   enable-api: true
   # Whether or not the update checker should be enabled
-  update-checker: true
+  update-checker: false
   # The delay (in ticks, 20 ticks = 1 second) between punishments.
   punishment-delay: 20
   # This is highly highly recommended to keep false as it can be spoofed by the client, however, if you're using Geyser and
@@ -376,6 +377,15 @@ settings:
   # How long we should wait for everything to initialize before players start being checked (in milliseconds). Default
   # value is 5000ms.
   join-check-wait-time: 5000
+  # Whether or not players with UUID's starting with '000000' should be ignored and not flagged - used for exemptions of
+  # Geyser players if all else fails.
+  ignore-geyser-uuids: false
+  # Whether or not we should ignore flags for players whose usernames start with a certain character/string of characters
+  ignore-geyser-prefixes: false
+  # The string to be ignored - all players names who start with a * will not be flagged (case sensitive if not symbols)
+  ignore-geyser-prefix: "*"
+  # The max violation (violations above this won't be sent)
+  max-alert-violation: 250
 
 hooks:
   ######################################################################################################################
@@ -479,7 +489,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+        - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .75
@@ -494,15 +504,15 @@ checks:
           rotate-every: 2
       b:
         enabled: true
-        punishable: true
+        punishable: trye
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -517,15 +527,15 @@ checks:
           rotate-every: 2
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .5
@@ -540,15 +550,15 @@ checks:
           rotate-every: 2
       d:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 8
           multiple: .5
@@ -563,15 +573,15 @@ checks:
           rotate-every: 2
       e:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .75
@@ -586,15 +596,15 @@ checks:
           rotate-every: 2
       f:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 12
           multiple: .5
@@ -609,15 +619,15 @@ checks:
           rotate-every: 2
       g:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -632,15 +642,15 @@ checks:
           rotate-every: 2
       h:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 7
           multiple: .5
@@ -655,15 +665,15 @@ checks:
           rotate-every: 2
       i:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 7
           multiple: .5
@@ -678,15 +688,15 @@ checks:
           rotate-every: 2
       j:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 7
           multiple: .5
@@ -701,15 +711,15 @@ checks:
           rotate-every: 2
       k:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 6
           multiple: .5
@@ -724,15 +734,15 @@ checks:
           rotate-every: 2
       l:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 7
           multiple: .45
@@ -746,15 +756,15 @@ checks:
           rotate-every: 2
       m:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .4
@@ -769,15 +779,15 @@ checks:
           rotate-every: 2
       n:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .5
@@ -792,15 +802,15 @@ checks:
           rotate-every: 2
       o:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .5
@@ -815,15 +825,15 @@ checks:
           rotate-every: 2
       p:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .4
@@ -838,15 +848,15 @@ checks:
           rotate-every: 2
       q:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 4
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 6
           multiple: .5
@@ -861,15 +871,15 @@ checks:
           rotate-every: 2
       r:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 20
           multiple: .3
@@ -884,15 +894,15 @@ checks:
           rotate-every: 2
       s:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 20
           multiple: .25
@@ -907,19 +917,65 @@ checks:
           rotate-every: 2
       t:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 20
-          multiple: .45
+          max: 2
+          multiple: .25
+          decay: .25
+        hotbar-shuffle:
+          enabled: false
+          minimum-vl-to-shuffle: 2
+          shuffle-every: 2
+        random-rotation:
+          enabled: false
+          minimum-vl-to-randomly-rotate: 2
+          rotate-every: 2
+      u:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 15
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 6
+          multiple: .25
           decay: .125
+        hotbar-shuffle:
+          enabled: false
+          minimum-vl-to-shuffle: 2
+          shuffle-every: 2
+        random-rotation:
+          enabled: false
+          minimum-vl-to-randomly-rotate: 2
+          rotate-every: 2
+      v:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 15
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 2
+          multiple: .25
+          decay: .25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -939,7 +995,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -958,7 +1014,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -977,7 +1033,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .5
@@ -1003,7 +1059,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         max-cps: 20
       b:
         enabled: true
@@ -1015,7 +1071,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
@@ -1030,7 +1086,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
@@ -1045,7 +1101,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
@@ -1060,7 +1116,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
@@ -1075,7 +1131,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -1090,7 +1146,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .25
@@ -1105,7 +1161,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -1120,7 +1176,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .5
@@ -1135,7 +1191,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -1150,7 +1206,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -1165,7 +1221,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .25
@@ -1180,7 +1236,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .25
@@ -1195,7 +1251,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 25
           multiple: .15
@@ -1210,7 +1266,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .25
@@ -1225,7 +1281,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .25
@@ -1239,7 +1295,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 35
           multiple: .3
@@ -1254,7 +1310,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 50
           multiple: .15
@@ -1269,7 +1325,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 30
           multiple: .15
@@ -1284,7 +1340,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 25
           multiple: .15
@@ -1299,45 +1355,12 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         max-cps: 25
     reach:
       a:
         enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 15
-        alert-interval: 1
-        dont-alert-until: 5
-        maximum-ping: 200
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 3
-          multiple: .25
-          decay: .035
-        max-reach: 3.05
-      b:
-        enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 20
-        alert-interval: 1
-        dont-alert-until: 2
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 6
-          multiple: .25
-          decay: .225
-        max-reach: 3.15
-    criticals:
-      a:
-        enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -1345,7 +1368,64 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 3
+          multiple: .25
+          decay: .035
+        max-reach: 3.03
+      b:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 20
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 6
+          multiple: .25
+          decay: .225
+        max-reach: 3.15
+    fastbow:
+      a:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 15
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 3
+          multiple: .5
+          decay: .125
+        hotbar-shuffle:
+          enabled: false
+          minimum-vl-to-shuffle: 2
+          shuffle-every: 2
+        random-rotation:
+          enabled: false
+          minimum-vl-to-randomly-rotate: 2
+          rotate-every: 2
+    criticals:
+      a:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 15
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 1
           multiple: .5
@@ -1360,7 +1440,7 @@ checks:
           rotate-every: 2
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -1368,7 +1448,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 1
           multiple: .5
@@ -1384,7 +1464,7 @@ checks:
     killaura:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 10
         alert-interval: 1
@@ -1392,7 +1472,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
@@ -1407,7 +1487,7 @@ checks:
           rotate-every: 2
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -1415,7 +1495,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .6
@@ -1430,7 +1510,7 @@ checks:
           rotate-every: 2
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 8
         alert-interval: 1
@@ -1438,7 +1518,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .5
@@ -1453,7 +1533,7 @@ checks:
           rotate-every: 2
       d:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 2
         alert-interval: 1
@@ -1461,10 +1541,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       e:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 5
         alert-interval: 1
@@ -1472,10 +1552,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       f:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 10
         alert-interval: 1
@@ -1483,14 +1563,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 10
           multiple: .25
           decay: 2
       g:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 10
         alert-interval: 1
@@ -1498,14 +1578,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 1
           multiple: .5
           decay: .05
       h:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 10
         alert-interval: 1
@@ -1513,10 +1593,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       i:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 10
         alert-interval: 1
@@ -1524,14 +1604,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
           decay: .25
       j:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -1539,14 +1619,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 1
           multiple: .5
           decay: .5
       k:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -1554,7 +1634,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
@@ -1562,15 +1642,15 @@ checks:
     hitbox:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 5
-        maximum-ping: 200
+        dont-alert-until: 1
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .15
@@ -1578,15 +1658,15 @@ checks:
         max-angle: .42
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 18
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 8
           multiple: .15
@@ -1603,7 +1683,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .25
@@ -1614,11 +1694,11 @@ checks:
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 6
           multiple: .35
@@ -1629,11 +1709,11 @@ checks:
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 3
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 10
           multiple: .5
@@ -1648,7 +1728,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 8
           multiple: .25
@@ -1658,14 +1738,14 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 15
-        alert-interval: 5
-        dont-alert-until: 4
+        alert-interval: 1
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 6
+          max: 8
           multiple: .3
           decay: .35
       h:
@@ -1674,11 +1754,11 @@ checks:
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .45
@@ -1687,22 +1767,22 @@ checks:
     noslow:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 12
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .25
           decay: .15
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -1710,14 +1790,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 8
           multiple: .25
           decay: .15
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
@@ -1725,14 +1805,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 7
           multiple: .5
           decay: .15
       d:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 100
         alert-interval: 1
@@ -1740,7 +1820,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .5
@@ -1748,7 +1828,7 @@ checks:
     motion:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
@@ -1756,14 +1836,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .25
           decay: .25
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
@@ -1771,14 +1851,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .25
           decay: .25
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -1786,29 +1866,29 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 1
           multiple: .5
           decay: .05
       d:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .25
           decay: .25
       e:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -1816,22 +1896,22 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 1
           multiple: .5
           decay: .05
       f:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
-        dont-alert-until: 3
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .45
@@ -1842,11 +1922,11 @@ checks:
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
-        dont-alert-until: 4
-        maximum-ping: 150
+        dont-alert-until: 1
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .25
@@ -1854,15 +1934,15 @@ checks:
     jump:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 25
-        alert-interval: 2
-        dont-alert-until: 3
-        maximum-ping: 150
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .25
@@ -1874,28 +1954,28 @@ checks:
         max-violations: 25
         alert-interval: 1
         dont-alert-until: 1
-        maximum-ping: 150
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .25
           decay: .15
     step:
       a:
-        enabled: false
-        punishable: true
+        enabled: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 5
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       b:
-        enabled: false
+        enabled: true
         punishable: false
         broadcast-punishment: false
         max-violations: 25
@@ -1904,13 +1984,13 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 6
           multiple: .25
           decay: .35
       c:
-        enabled: false
+        enabled: true
         punishable: false
         broadcast-punishment: false
         max-violations: 25
@@ -1919,11 +1999,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 1
+          max: 4
           multiple: .25
-          decay: .05
+          decay: .125
     boatfly:
       a:
         enabled: true
@@ -1935,27 +2015,26 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 5
-          multiple: .5
-          decay: .15
-        max-speed: .125
+          max: 4
+          multiple: .33
+          decay: .125
       b:
         enabled: true
         punishable: false
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 3
-          multiple: .5
-          decay: .15
+          max: 5
+          multiple: .25
+          decay: .25
     entityspeed:
       a:
         enabled: true
@@ -1967,12 +2046,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 4
+          max: 5
           multiple: .5
           decay: .25
-        max-speed: 1.26
     elytra:
       a:
         enabled: true
@@ -1984,7 +2062,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         max-speed: 4.1
       b:
         enabled: true
@@ -1996,7 +2074,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 8
           multiple: .5
@@ -2004,53 +2082,53 @@ checks:
     speed:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 25
-        alert-interval: 1
+        max-violations: 30
+        alert-interval: 2
         dont-alert-until: 2
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 4
+          max: 3
           multiple: .35
           decay: .125
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 25
-        alert-interval: 1
+        max-violations: 30
+        alert-interval: 2
         dont-alert-until: 2
-        maximum-ping: 150
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .25
-          decay: .05
+          decay: .045
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 25
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 150
+        max-violations: 30
+        alert-interval: 2
+        dont-alert-until: 2
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .25
-          decay: .05
+          decay: .045
     fastclimb:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -2058,7 +2136,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -2066,15 +2144,15 @@ checks:
     wallclimb:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
-        alert-interval: 1
+        alert-interval: 2
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .35
@@ -2085,12 +2163,12 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 30
-        alert-interval: 1
+        alert-interval: 2
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
@@ -2100,12 +2178,12 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 30
-        alert-interval: 1
+        alert-interval: 2
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -2115,12 +2193,12 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 30
-        alert-interval: 1
+        alert-interval: 2
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 10
           multiple: .45
@@ -2130,12 +2208,12 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 30
-        alert-interval: 1
+        alert-interval: 2
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .45
@@ -2145,88 +2223,88 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 30
-        alert-interval: 1
+        alert-interval: 2
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 10
           multiple: .25
           decay: .175
     flight:
       a:
-        enabled: false
+        enabled: true
         punishable: false
         broadcast-punishment: false
-        max-violations: 25
-        alert-interval: 1
+        max-violations: 30
+        alert-interval: 2
         dont-alert-until: 2
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .65
           decay: .275
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 17
-        alert-interval: 1
+        max-violations: 30
+        alert-interval: 2
         dont-alert-until: 2
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
           decay: .275
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 35
-        alert-interval: 1
+        max-violations: 30
+        alert-interval: 2
         dont-alert-until: 2
-        maximum-ping: 200
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .75
           decay: .225
       d:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 20
-        alert-interval: 1
-        dont-alert-until: 4
-        maximum-ping: 300
+        max-violations: 30
+        alert-interval: 2
+        dont-alert-until: 2
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .35
           decay: .275
       e:
-        enabled: false
+        enabled: true
         punishable: false
         broadcast-punishment: false
-        max-violations: 25
-        alert-interval: 1
-        dont-alert-until: 1
+        max-violations: 30
+        alert-interval: 2
+        dont-alert-until: 2
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .4
@@ -2238,11 +2316,11 @@ checks:
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
-        dont-alert-until: 10
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 6
           multiple: .25
@@ -2253,18 +2331,18 @@ checks:
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
-        dont-alert-until: 10
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 7
           multiple: .25
           decay: .25
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
@@ -2272,7 +2350,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 6
           multiple: .25
@@ -2283,12 +2361,12 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 25
-        alert-interval: 1
-        dont-alert-until: 10
-        maximum-ping: 150
+        alert-interval: 2
+        dont-alert-until: 1
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .5
@@ -2299,11 +2377,11 @@ checks:
         broadcast-punishment: false
         max-violations: 25
         alert-interval: 1
-        dont-alert-until: 10
-        maximum-ping: 150
+        dont-alert-until: 1
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .15
@@ -2320,7 +2398,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
     fastplace:
       a:
         enabled: true
@@ -2332,7 +2410,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         max-blocks: 15
     fastbreak:
       a:
@@ -2345,31 +2423,15 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .25
           decay: .5
     tower:
       a:
-        enabled: false
-        punishable: false
-        broadcast-punishment: false
-        max-violations: 10
-        alert-interval: 1
-        dont-alert-until: 5
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 3
-          multiple: .5
-          decay: .25
-    scaffold:
-      a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 10
         alert-interval: 1
@@ -2377,10 +2439,26 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 4
+          multiple: .5
+          decay: .75
+    scaffold:
+      a:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 5
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -2388,10 +2466,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
@@ -2399,29 +2477,29 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .25
           decay: .5
       d:
-        enabled: false
+        enabled: true
         punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
-        dont-alert-until: 3
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .25
           decay: .5
       e:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
@@ -2429,14 +2507,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .25
           decay: .5
       f:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
@@ -2444,22 +2522,22 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
           decay: .25
       g:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
-        dont-alert-until: 5
-        maximum-ping: 150
+        dont-alert-until: 1
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .25
@@ -2469,19 +2547,19 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 20
-        alert-interval: 2
-        dont-alert-until: 5
-        maximum-ping: 150
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 6
+          max: 8
           multiple: .25
-          decay: .25
+          decay: .35
       i:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
@@ -2489,21 +2567,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       j:
         enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 20
-        alert-interval: 1
-        dont-alert-until: 2
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-      k:
-        enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
@@ -2511,7 +2578,18 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      k:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 20
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 1
           multiple: .5
@@ -2519,7 +2597,7 @@ checks:
         max-blocks: 6
       l:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 20
         alert-interval: 1
@@ -2527,37 +2605,52 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .5
           decay: .025
+      m:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 20
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 1
+          multiple: .5
+          decay: .25
     timer:
       a:
         enabled: true
         punishable: false
         broadcast-punishment: false
         max-violations: 20
-        alert-interval: 1
-        dont-alert-until: 5
+        alert-interval: 2
+        dont-alert-until: 3
         maximum-ping: 100000
-        minimum-tps: 19.5
+        minimum-tps: 19.8
         punishment-commands:
           - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
         buffer:
-          max: 30
-          multiple: .25
-          decay: 1.25
-        max-speed: 1.03
+          max: 35
+          multiple: .425
+          decay: 1.85
+        max-speed: 1.05
       b:
         enabled: true
         punishable: false
         broadcast-punishment: false
         max-violations: 25
-        alert-interval: 1
-        dont-alert-until: 1
+        alert-interval: 2
+        dont-alert-until: 3
         maximum-ping: 100000
-        minimum-tps: 19.0
+        minimum-tps: 19.8
         punishment-commands:
           - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
         buffer:
@@ -2565,6 +2658,38 @@ checks:
           multiple: .5
           decay: 4.0
         min-speed: .81
+      c:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 25
+        alert-interval: 2
+        dont-alert-until: 3
+        maximum-ping: 100000
+        minimum-tps: 19.8
+        punishment-commands:
+          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+        buffer:
+          max: 3
+          multiple: .25
+          decay: 1
+        max-packets: 23
+      d:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 25
+        alert-interval: 2
+        dont-alert-until: 5
+        maximum-ping: 100000
+        minimum-tps: 19.8
+        punishment-commands:
+          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+        buffer:
+          max: 2
+          multiple: .5
+          decay: .25
+        max-balance: 50
     hackedclient:
       a:
         enabled: true
@@ -2576,7 +2701,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
     interact:
       a:
         enabled: true
@@ -2588,7 +2713,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .5
@@ -2604,7 +2729,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 7
           multiple: .25
@@ -2620,7 +2745,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       d:
         enabled: true
         punishable: false
@@ -2631,7 +2756,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       e:
         enabled: true
         punishable: false
@@ -2642,7 +2767,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -2654,11 +2779,11 @@ checks:
         broadcast-punishment: false
         max-violations: 40
         alert-interval: 1
-        dont-alert-until: 5
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 30
           multiple: .5
@@ -2668,12 +2793,12 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 40
-        alert-interval: 2
-        dont-alert-until: 5
+        alert-interval: 1
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .5
@@ -2689,7 +2814,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       b:
         enabled: true
         punishable: true
@@ -2700,7 +2825,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
@@ -2715,174 +2840,178 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
     badpackets:
       a:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 1
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       b:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 1
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       c:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 1
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       d:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 5
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 1
+          multiple: .5
+          decay: .01
       e:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 1
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       f:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 1
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       g:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 1
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       h:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 3
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       i:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 3
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       j:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 3
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
       k:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 5
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
           decay: .4
       l:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 8
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .4
           decay: .25
       m:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 8
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 4
-          multiple: .5
-          decay: .15
+          max: 5
+          multiple: .33
+          decay: .25
       n:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 8
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 15
           multiple: .25
@@ -2897,124 +3026,57 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
           decay: .15
       p:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 8
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
           decay: .15
       q:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 3
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
           decay: .15
       r:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
-        max-violations: 15
+        max-violations: 10
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 3
-          multiple: .5
-          decay: .15
-      s:
-        enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 15
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 12
-          multiple: .45
-          decay: 1.25
-      t:
-        enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 15
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-      u:
-        enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 15
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-      v:
-        enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 15
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 6
           multiple: .5
-          decay: .075
-      w:
-        enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 15
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 8
-          multiple: .5
-          decay: .75
-      x:
+          decay: .25
+      s:
         enabled: true
         punishable: false
         broadcast-punishment: false
@@ -3024,14 +3086,14 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 6
-          multiple: .5
-          decay: .35
-      y:
+          max: 12
+          multiple: .45
+          decay: 1.25
+      t:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 1
         alert-interval: 1
@@ -3039,7 +3101,89 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      u:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 1
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      v:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 15
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 8
+          multiple: .5
+          decay: .075
+      w:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 15
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 8
+          multiple: .5
+          decay: .75
+      x:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 10
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 6
+          multiple: .5
+          decay: .35
+      y:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 1
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+      z:
+        enabled: true
+        punishable: false
+        broadcast-punishment: false
+        max-violations: 10
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &cBoat Glitch Detected'
+        buffer:
+          max: 8
+          multiple: .5
+          decay: .75
     inventory:
       a:
         enabled: true
@@ -3051,22 +3195,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 2
           multiple: .25
           decay: .25
-      b:
-        enabled: true
-        punishable: false
-        broadcast-punishment: false
-        max-violations: 10
-        alert-interval: 1
-        dont-alert-until: 2
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
     blink:
       a:
         enabled: true
@@ -3094,7 +3227,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 5
           multiple: .25
@@ -3157,7 +3290,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -3172,7 +3305,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 4
           multiple: .5
@@ -3182,12 +3315,16 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 20
-        alert-interval: 2
+        alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 1
+          multiple: .5
+          decay: .01
       d:
         enabled: true
         punishable: false
@@ -3198,7 +3335,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 8
           multiple: .25
@@ -3208,23 +3345,31 @@ checks:
         punishable: false
         broadcast-punishment: false
         max-violations: 25
-        alert-interval: 2
-        dont-alert-until: 2
+        alert-interval: 1
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 1
+          multiple: .5
+          decay: .01
       f:
         enabled: true
         punishable: false
         broadcast-punishment: false
         max-violations: 5
         alert-interval: 1
-        dont-alert-until: 2
+        dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 1
+          multiple: .5
+          decay: .01
     groundspoof:
       a:
         enabled: true
@@ -3236,9 +3381,9 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
-          max: 2
+          max: 3
           multiple: .5
           decay: .25
       b:
@@ -3251,26 +3396,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         buffer:
           max: 3
           multiple: .5
           decay: .125
-      c:
-        enabled: true
-        punishable: false
-        broadcast-punishment: false
-        max-violations: 25
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 3
-          multiple: .5
-          decay: .2
     improbable:
       a:
         enabled: true
@@ -3282,7 +3412,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         max-combat-violations: 150
       b:
         enabled: true
@@ -3294,7 +3424,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         max-movement-violations: 300
       c:
         enabled: true
@@ -3306,7 +3436,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         max-player-violations: 150
       d:
         enabled: true
@@ -3318,5 +3448,5 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
         max-autoclicker-violations: 200
