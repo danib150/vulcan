@@ -103,9 +103,9 @@ violation-reset:
   # Whether or not violations should reset automatically
   enabled: true
   # The interval (in minutes) in which violations should automatically be reset.
-  interval-in-minutes: 4
+  interval-in-minutes: 5
   # Whether or not a message will be sent when violations are reset (this is only sent to staff who have /alerts enabled).
-  message-enabled: false
+  message-enabled: true
   # The message that is sent (only to staff with /alerts enabled) when violations are reset.
   message: '%prefix% &7Violations for all online players were reset!'
 
@@ -2073,6 +2073,21 @@ checks:
           max: 8
           multiple: .5
           decay: .125
+      c:
+        enabled: false
+        punishable: false
+        broadcast-punishment: true
+        max-violations: 100
+        alert-interval: 1
+        dont-alert-until: 1
+        maximum-ping: 100000
+        minimum-tps: 19.0
+        punishment-commands:
+          - 'kick %player% &c[Vulcan] Unfair Advantage'
+        buffer:
+          max: 20
+          multiple: .5
+          decay: .125
     speed:
       a:
         enabled: true
@@ -2116,9 +2131,9 @@ checks:
         punishment-commands:
           - 'vulcan ban %player%'
         buffer:
-          max: 20
-          multiple: .5
-          decay: .125
+          max: 3
+          multiple: .25
+          decay: .045
     fastclimb:
       a:
         enabled: false
@@ -2654,7 +2669,7 @@ checks:
           decay: 1
         max-packets: 23
       d:
-        enabled: false
+        enabled: true
         punishable: false
         broadcast-punishment: false
         max-violations: 25
