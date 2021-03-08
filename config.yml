@@ -271,8 +271,7 @@ commands:
     - "&7&m---»--*-------------------------------------*--«---"
   ban:
     # The commands that will be executed when /vulcan ban (player) is executed
-    commands:
-      - 'corneaban %player%'
+    commands: []
     # The messages that will be broadcast when /vulcan ban (player) is executed
     broadcast: []
   # Options for the /vulcan profile (name) command
@@ -486,7 +485,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-        - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .75
@@ -509,7 +508,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -532,7 +531,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .5
@@ -555,7 +554,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .5
@@ -578,7 +577,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .75
@@ -601,7 +600,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 12
           multiple: .5
@@ -624,7 +623,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -647,7 +646,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 7
           multiple: .5
@@ -670,7 +669,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 7
           multiple: .5
@@ -693,7 +692,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 7
           multiple: .5
@@ -716,7 +715,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .5
@@ -739,7 +738,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 7
           multiple: .45
@@ -761,7 +760,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .4
@@ -784,7 +783,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .5
@@ -807,7 +806,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .5
@@ -830,7 +829,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .4
@@ -845,7 +844,7 @@ checks:
           rotate-every: 2
       q:
         enabled: true
-        punishable: true
+        punishable: false
         broadcast-punishment: false
         max-violations: 15
         alert-interval: 1
@@ -853,7 +852,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .5
@@ -876,7 +875,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 20
           multiple: .3
@@ -899,7 +898,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 20
           multiple: .25
@@ -922,7 +921,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .25
@@ -945,7 +944,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .25
@@ -968,7 +967,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 16
           multiple: .25
@@ -992,7 +991,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1011,7 +1010,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1022,7 +1021,7 @@ checks:
           rotate-every: 2
       c:
         enabled: true
-        punishable: false
+        punishable: true
         broadcast-punishment: false
         max-violations: 10
         alert-interval: 1
@@ -1030,7 +1029,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .5
@@ -1056,7 +1055,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         max-cps: 30
       b:
         enabled: true
@@ -1068,7 +1067,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -1083,7 +1082,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -1098,7 +1097,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -1113,7 +1112,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -1128,7 +1127,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -1143,7 +1142,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .25
@@ -1158,7 +1157,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -1173,7 +1172,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .5
@@ -1188,7 +1187,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -1203,7 +1202,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -1218,7 +1217,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .25
@@ -1233,7 +1232,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .25
@@ -1248,7 +1247,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 25
           multiple: .15
@@ -1263,7 +1262,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .25
@@ -1278,7 +1277,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .25
@@ -1292,7 +1291,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 35
           multiple: .3
@@ -1307,7 +1306,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 50
           multiple: .15
@@ -1322,7 +1321,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 30
           multiple: .15
@@ -1337,7 +1336,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 25
           multiple: .15
@@ -1352,7 +1351,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         max-cps: 35
     reach:
       a:
@@ -1365,12 +1364,12 @@ checks:
         maximum-ping: 200
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .25
           decay: .035
-        max-reach: 3.1
+        max-reach: 3.03
       b:
         enabled: true
         punishable: true
@@ -1381,7 +1380,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .25
@@ -1398,7 +1397,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -1422,7 +1421,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -1445,7 +1444,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -1463,13 +1462,13 @@ checks:
         enabled: true
         punishable: true
         broadcast-punishment: false
-        max-violations: 5
+        max-violations: 6
         alert-interval: 1
         dont-alert-until: 1
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -1492,7 +1491,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .6
@@ -1515,7 +1514,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .5
@@ -1538,7 +1537,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       e:
         enabled: true
         punishable: true
@@ -1549,7 +1548,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       f:
         enabled: true
         punishable: true
@@ -1560,7 +1559,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 10
           multiple: .25
@@ -1575,7 +1574,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -1590,7 +1589,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       i:
         enabled: true
         punishable: true
@@ -1601,7 +1600,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -1616,7 +1615,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -1631,7 +1630,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -1647,7 +1646,7 @@ checks:
         maximum-ping: 200
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .15
@@ -1663,7 +1662,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .15
@@ -1680,7 +1679,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .25
@@ -1695,7 +1694,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .35
@@ -1710,7 +1709,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 10
           multiple: .5
@@ -1725,7 +1724,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .25
@@ -1740,7 +1739,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .3
@@ -1757,7 +1756,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .25
@@ -1772,7 +1771,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .25
@@ -1787,7 +1786,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 7
           multiple: .5
@@ -1802,7 +1801,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .5
@@ -1818,7 +1817,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 3
           multiple: .25
@@ -1833,7 +1832,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 3
           multiple: .25
@@ -1848,7 +1847,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 1
           multiple: .5
@@ -1863,7 +1862,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 2
           multiple: .25
@@ -1878,7 +1877,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 1
           multiple: .5
@@ -1893,7 +1892,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 3
           multiple: .45
@@ -1908,7 +1907,7 @@ checks:
         maximum-ping: 150
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 4
           multiple: .25
@@ -1924,7 +1923,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 2
           multiple: .25
@@ -1939,7 +1938,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 2
           multiple: .25
@@ -1955,7 +1954,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       b:
         enabled: false
         punishable: false
@@ -1966,7 +1965,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .25
@@ -1981,7 +1980,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .25
@@ -1997,7 +1996,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .33
@@ -2012,7 +2011,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .25
@@ -2040,7 +2039,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .5
@@ -2056,7 +2055,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         max-speed: 4.1
       b:
         enabled: false
@@ -2068,7 +2067,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .5
@@ -2099,7 +2098,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 3
           multiple: .35
@@ -2129,7 +2128,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 3
           multiple: .25
@@ -2145,7 +2144,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -2161,7 +2160,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .35
@@ -2177,7 +2176,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -2192,7 +2191,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -2207,7 +2206,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 10
           multiple: .45
@@ -2222,7 +2221,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .45
@@ -2237,7 +2236,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 10
           multiple: .25
@@ -2253,7 +2252,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 3
           multiple: .65
@@ -2262,13 +2261,13 @@ checks:
         enabled: true
         punishable: true
         broadcast-punishment: false
-        max-violations: 30
+        max-violations: 20
         alert-interval: 2
         dont-alert-until: 2
         maximum-ping: 300
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 3
           multiple: .5
@@ -2283,7 +2282,7 @@ checks:
         maximum-ping: 200
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 4
           multiple: .75
@@ -2298,7 +2297,7 @@ checks:
         maximum-ping: 300
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 4
           multiple: .35
@@ -2313,7 +2312,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'kick %player% Cheating -s'
         buffer:
           max: 3
           multiple: .4
@@ -2329,7 +2328,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .25
@@ -2344,7 +2343,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 7
           multiple: .25
@@ -2360,7 +2359,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .5
@@ -2375,7 +2374,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .15
@@ -2392,7 +2391,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
     fastplace:
       a:
         enabled: true
@@ -2404,7 +2403,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         max-blocks: 15
     fastbreak:
       a:
@@ -2417,7 +2416,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .25
@@ -2433,7 +2432,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -2449,7 +2448,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       b:
         enabled: true
         punishable: true
@@ -2460,7 +2459,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       c:
         enabled: true
         punishable: true
@@ -2471,7 +2470,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .25
@@ -2486,7 +2485,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .25
@@ -2501,7 +2500,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .25
@@ -2516,7 +2515,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -2531,7 +2530,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .25
@@ -2546,7 +2545,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .25
@@ -2561,7 +2560,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       j:
         enabled: true
         punishable: true
@@ -2572,7 +2571,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       k:
         enabled: true
         punishable: true
@@ -2583,7 +2582,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -2599,7 +2598,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .5
@@ -2614,7 +2613,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -2669,7 +2668,7 @@ checks:
           decay: 1
         max-packets: 23
       d:
-        enabled: true
+        enabled: false
         punishable: false
         broadcast-punishment: false
         max-violations: 25
@@ -2695,7 +2694,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
     interact:
       a:
         enabled: true
@@ -2707,7 +2706,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .5
@@ -2723,7 +2722,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 7
           multiple: .25
@@ -2739,7 +2738,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       d:
         enabled: true
         punishable: false
@@ -2750,7 +2749,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       e:
         enabled: true
         punishable: false
@@ -2761,7 +2760,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -2777,7 +2776,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 30
           multiple: .5
@@ -2792,7 +2791,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .5
@@ -2808,7 +2807,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       b:
         enabled: false
         punishable: true
@@ -2819,7 +2818,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -2834,7 +2833,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
     badpackets:
       a:
         enabled: true
@@ -2846,7 +2845,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .5
@@ -2861,7 +2860,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       c:
         enabled: true
         punishable: true
@@ -2872,7 +2871,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       d:
         enabled: true
         punishable: true
@@ -2883,7 +2882,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -2898,7 +2897,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       f:
         enabled: true
         punishable: false
@@ -2909,7 +2908,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       g:
         enabled: true
         punishable: true
@@ -2920,10 +2919,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       h:
-        enabled: true
-        punishable: true
+        enabled: false
+        punishable: false
         broadcast-punishment: false
         max-violations: 10
         alert-interval: 1
@@ -2931,7 +2930,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       i:
         enabled: true
         punishable: true
@@ -2942,7 +2941,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       j:
         enabled: true
         punishable: true
@@ -2953,7 +2952,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       k:
         enabled: true
         punishable: true
@@ -2964,7 +2963,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -2976,10 +2975,10 @@ checks:
         max-violations: 10
         alert-interval: 1
         dont-alert-until: 1
-        maximum-ping: 100000
+        maximum-ping: 200
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .4
@@ -2994,7 +2993,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .33
@@ -3009,7 +3008,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 15
           multiple: .25
@@ -3024,7 +3023,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -3039,7 +3038,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -3054,7 +3053,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -3069,7 +3068,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .5
@@ -3084,7 +3083,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 12
           multiple: .45
@@ -3099,7 +3098,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       u:
         enabled: true
         punishable: true
@@ -3110,7 +3109,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       v:
         enabled: true
         punishable: true
@@ -3121,7 +3120,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .5
@@ -3136,7 +3135,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .5
@@ -3151,7 +3150,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 6
           multiple: .5
@@ -3166,7 +3165,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
       z:
         enabled: false
         punishable: false
@@ -3193,7 +3192,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 2
           multiple: .25
@@ -3225,7 +3224,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 5
           multiple: .25
@@ -3288,7 +3287,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -3303,7 +3302,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 4
           multiple: .5
@@ -3318,7 +3317,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -3333,7 +3332,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 8
           multiple: .25
@@ -3348,7 +3347,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -3363,7 +3362,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 1
           multiple: .5
@@ -3379,7 +3378,7 @@ checks:
         maximum-ping: 100
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -3394,7 +3393,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         buffer:
           max: 3
           multiple: .5
@@ -3410,7 +3409,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         max-combat-violations: 150
       b:
         enabled: true
@@ -3422,7 +3421,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         max-movement-violations: 300
       c:
         enabled: true
@@ -3434,7 +3433,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         max-player-violations: 150
       d:
         enabled: true
@@ -3446,5 +3445,5 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'vulcan ban %player%'
+          - 'corneaban %player%'
         max-autoclicker-violations: 200
