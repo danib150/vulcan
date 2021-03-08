@@ -17,23 +17,23 @@ alerts:
   # This is the hover text that will be displayed when you hover over the alert message in chat.
   # All of the same placeholders as the ones for the format are valid.
   hover-message:
-  - '&7Ping: &c%ping% &8| &7TPS: &c%tps% &8| &7Version: &c%version%'
-  - ''
-  - '&7Description:'
-  - '&7%description%'
-  - ''
-  - '&7Information:'
-  - '&7%info%'
-  - ''
-  - '&7Click to teleport to &b%player%&7.'
+    - "&7Ping: &c%ping% &8| &7TPS: &c%tps% &8| &7Version: &c%version%"
+    - ""
+    - "&7Description:"
+    - "&7%description%"
+    - ""
+    - "&7Information:"
+    - "&7%info%"
+    - ""
+    - "&7Click to teleport to &b%player%&7."
   # This is the command that will be executed when you click the alert message. Unfortunately we are limited to one
   # command per ChatComponent so we use a little magic and make our own command that is able to execute a list of any commands.
   # Valid placeholders
   click-commands:
-  - '/vulcan clickalert %player%'
+    - "/vulcan clickalert %player%"
   # The commands that will be run when you use /vulcan clickalert %player% (must be a player parameter)
   click-alert-command-commands:
-  - 'tp %player%'
+    - "tp %player%"
   # The message that will be sent when you toggle on alerts. Valid placeholder are %prefix%.
   toggled-on-message: '%prefix% &7Vulcan alerts &aenabled&7!'
   # The message that will be sent when you toggle off alerts. Valid placeholder are %prefix%.
@@ -49,16 +49,16 @@ alerts:
   # You can use this section to color code your alerts or add chances to them depending on the violation level.
   severity:
     violations:
-      2: 4 # Values less than this number will be the color '1' below. Values greater than or equal to this number and less than '3' will be the color 2
-      3: 8 # Values greater than or equal to this number and higher than '2' will be the color '3' below
-      4: 12 # Values greater than or equal to this number and higher than '3' will be the color '4' below
-      5: 16 # Values greater than or equal to this number and higher than '4' will be the color '5' below
+      2: 4
+      3: 8
+      4: 12
+      5: 16
     colors:
-      1: '&a' # The color that this severity should be, whatever is less than '2' in the section above
-      2: '&e' # The color that this severity should be, whatever is less than '3' and greater than or equal to '2' in the section above
-      3: '&6' # The color that this severity should be, whatever is less than '4' and greater than or equal to '3' in the section above
-      4: '&c' # The color that this severity should be, whatever is less than '5' and greater than or equal to '4' in the section above
-      5: '&4' # The color that this severity should be, whatever is greater than or equal to '5' in the section above will be this color
+      1: '&a'
+      2: '&e'
+      3: '&6'
+      4: '&c'
+      5: '&4'
 
 verbose:
   # Verbose notifications are sent whenever a player increases the buffer on a check. Only really here for developer
@@ -66,17 +66,17 @@ verbose:
   # as it will just completely spam your chat.
   format: '%prefix% &c%player% &7verbosed &b%check% &7%dev%&7(&bType %type%&7)&7%dev% &7(%percent%%)'
   hover-message:
-    - '&7Ping: &c%ping% &8| &7TPS: &c%tps% &8| &7Version: &c%version%'
-    - ''
-    - '&7Description:'
-    - '&7%description%'
-    - ''
-    - '&7Buffer:'
-    - '&7%buffer%/%max-buffer%'
-    - ''
-    - '&7Click to teleport to &b%player%&7.'
+    - "&7Ping: &c%ping% &8| &7TPS: &c%tps% &8| &7Version: &c%version%"
+    - ""
+    - "&7Description:"
+    - "&7%description%"
+    - ""
+    - "&7Buffer:"
+    - "&7%buffer%/%max-buffer%"
+    - ""
+    - "&7Click to teleport to &b%player%&7."
   click-commands:
-    - '/tp %player%'
+    - "/tp %player%"
   toggled-on-message: '%prefix% &7Vulcan verbose &aenabled&7!'
   toggled-off-message: '%prefix% &7Vulcan verbose &cdisabled&7!'
 
@@ -88,10 +88,12 @@ log-file:
   # Valid placeholders are %player% (player name), %max-vl% (max violations), %check% (name of check), %description% (check description),
   # %version% (player's client version), %dev% (* for whether or not the check is experimental), %vl% (violation level),
   # %ping% (the player's ping), %tps% (the server's TPS), and %type% (character denoting the type for the check, A, B, C, etc).
-  alert-message: "%player% failed %check% %dev%(Type %type%)%dev% [VL: %vl%] [Ping: %ping%] [TPS: %tps%] [Version: %version%]"
+  alert-message: '%player% failed %check% %dev%(Type %type%)%dev% [VL: %vl%] [Ping: %ping%] [TPS: %tps%]
+  [Version: %version%]'
   # The message that is logged when a player is punished for a check. Valid placeholders are the same as listed above.
   # Further details about the punishment will also be logged into the punishments.txt file if enabled (see next section).
-  punishment-message: "%player% was punished for %check% %dev%(Type %type%)%dev% [VL: %vl%] [Ping: %ping%] [TPS: %tps%]"
+  punishment-message: '%player% was punished for %check% %dev%(Type %type%)%dev% [VL: %vl%] [Ping: %ping%]
+  [TPS: %tps%]'
 
 # This section deals with the punishments.txt file
 punishment-file:
@@ -121,9 +123,6 @@ client-brand-alerts:
   # The message sent when a player joins the server. Valid placeholder are %player (player name), %prefix% (plugin prefix),
   # %client-brand% (the user's client brand), and %client-version% (the user's client version).
   message: '%prefix% &c%player% &7joined using &b%client-brand%&7!'
-  # A list of client brands that will not be allowed and will be kicked automatically when they join. This uses
-  # string comparison so it doesnt need to be exact, for example, 'forge' will block Forge, 'lunar' will block lunar, etc.
-  blocked-client-brands:
   #  - 'forge'
   #  - 'lunar'
   unallowed-client-brand-kick-message: '&cYou can''t join with %client-brand%!'
@@ -134,9 +133,9 @@ punishments:
   message: '%prefix% &c%player% &7was punished for &b%check% &7(&bType %type%&7) &7(x%vl%)'
   # The message that will be broadcast to the whole server when a player is punished
   broadcast:
-  - "&7&m---»--*-------------------------------------*--«---"
-  - "&cVulcan &7has detected &c%player% &7to be cheating and has removed them from the network."
-  - "&7&m---»--*-------------------------------------*--«---"
+    - "&7&m---»--*-------------------------------------*--«---"
+    - "&cVulcan &7has detected &c%player% &7to be cheating and has removed them from the network."
+    - "&7&m---»--*-------------------------------------*--«---"
 
 #Judgement Day options
 judgement-days:
@@ -150,9 +149,9 @@ judgement-days:
     - "ban %player% &c[Vulcan] Judgement Day v1"
   # The broadcast that will be sent to the server when someone is punished in a judgement day.
   broadcast:
-    - '&7&m---»--*-------------------------------------*--«---'
-    - '&c%player% &7was banned for &c[Vulcan] Judgement Day v1&7.'
-    - '&7&m---»--*-------------------------------------*--«---'
+    - "&7&m---»--*-------------------------------------*--«---"
+    - "&c%player% &7was banned for &c[Vulcan] Judgement Day v1&7."
+    - "&7&m---»--*-------------------------------------*--«---"
 
 # Options regarding the join message
 join-message:
@@ -160,9 +159,9 @@ join-message:
   enabled: false
   # The message that will be sent when a player joins the server.
   message:
-    - ''
-    - '&4&lWARNING &cButterfly clicking is strongly discouraged and may result in a ban!'
-    - ''
+    - ""
+    - "&4&lWARNING &cButterfly clicking is strongly discouraged and may result in a ban!"
+    - ""
 
 # Whether or not staff will /alerts enabled will be notified when players get kicked for any of these reasons by
 # Spigot itself (these are just messages, Vulcan is not actually kicking the player for any of these things)
@@ -181,7 +180,8 @@ messages:
   kb-command-syntax: '%prefix% &7Proper Syntax: &c/vulcan knockback (player) &8| &c/vulcan kb (player)&7.'
   profile-command-syntax: '%prefix% &7Proper Syntax: &c/vulcan profile (player)&7.'
   jday-command-syntax: '%prefix% &7Proper Syntax: &c/jday add (player) &8| &c/jday execute&7.'
-  reload-success: '%prefix% &aSuccessfully reloaded Vulcan! (You may have to run this command twice to take effect)'
+  reload-success: '%prefix% &aSuccessfully reloaded Vulcan! (You may have to run this command twice
+  to take effect)'
   invalid-target: '%prefix% &cThe specified player could not be found!'
   kb-test-success: '%prefix% &aSuccessfully performed knockback test on %player%!'
   jday-no-pending-bans: '%prefix% &cThere are no pending bans!'
@@ -223,7 +223,8 @@ messages:
   stopped-editing-punishment-commands: '%prefix% &cStopped editing punishment commands!'
   added-punishment-command: '%prefix% &aAdded punishment command %command% to check %check%!'
   enter-punishment-command: '%prefix% &aEnter the command you want to add! Type STOP or CANCEL to exit!'
-  remove-punishment-command: '%prefix% &cEnter the index of the command you want to remove. Type STOP or CANCEL to exit!'
+  remove-punishment-command: '%prefix% &cEnter the index of the command you want to remove. Type STOP or CANCEL
+  to exit!'
   disable-check-command-syntax: '%prefix% &cProper Syntax: /vulcan disablecheck (check name) - case sensitive.'
   invalid-check: '%prefix% &cInvalid check name! Examples: AimA, BadPacketsF, AutoClickerJ.'
   removed-check: '%prefix% &cDisabled check %check%!'
@@ -237,12 +238,16 @@ messages:
   no-page: '%prefix% &cThere is no page %page% for %player%!'
   update-available: '%prefix% &7A new update for &cVulcan &7is available! (&cv%new-version%&7)'
   latest-version: '%prefix% &aYou are running the latest version of Vulcan!'
-  injection-failure: 'You joined too quickly. Please try again!'
+  injection-failure: You joined too quickly. Please try again!
   frozen: '&cYou are frozen! Please await instructions from staff.'
   logged-out-while-frozen: '%prefix% &c%player% logged out while frozen!'
   froze: '%prefix% &7You froze &a%player%&7!'
   unfroze: '%prefix% &7You unfroze &c%player%!'
   freeze-command-syntax: '%prefix% &cProper Syntax: /vulcan freeze (player)'
+  shuffle-command-syntax: '%prefix% &cProper Syntax: /vulcan shuffle (player)'
+  shuffled-hotbar: '%prefix% &aSuccessfully shuffled hotbar for %player%!'
+  rotate-command-syntax: '%prefix% &cProper Syntax: /vulcan rotate (player)'
+  randomly-rotated: '%prefix% &aSuccessfully rotated %player%!'
 
 # Command configuration options.
 commands:
@@ -294,7 +299,7 @@ commands:
     - "&8» &7Nearby Blocks: %nearby-blocks%"
     - "&8» &7Nearby Entities: %nearby-entities%"
     - "&7&m---»--*-------------------------------------*--«---"
-  cps: "%prefix% &7CPS for &c%player%&7: &c%cps%"
+  cps: '%prefix% &7CPS for &c%player%&7: &c%cps%'
   connection:
     - "&7&m---»--*-------------------------------------*--«---"
     - "&cConnection Information for %player%:"
@@ -322,74 +327,29 @@ settings:
   # Whether or not certain checks will be disabled when colliding with entities (recommended for higher server versions)
   # If your server is 1.8 or lower you can disable this
   entity-collision-fix: false
+  disable-autoclicker-above-1:
   # Whether or not autoclicker checks should be disabled for players who are on a client version greater than 1.8
   # Due to changes in the protocol, they may not be the most stable, however this is a last resort.
-  disable-autoclicker-above-1.8: true
-  # Whether or not cinematic mode will be checked for certain aim checks. This isn't really a big deal and can be
-  # left disabled as this will pretty much NEVER happen unless done intentionally. Enabling this will slow
-  # detection speeds for certain checks.
+    8: true
   cinematic: false
-  # This is just here in case I forget to remove a debug message when I post an update. If I forget to remove a debug
-  # message and you see [Vulcan Debug] on your server, disable this (it won't effect you if this is enabled or disabled
-  # unless I forget to remove a debug message, but if you see [Vulcan Debug] in chat, then set this to false and reload).
   debug: true
-  # Whether or not 'A new update is available!' message will be set on join for players with 'vulcan.admin' permission
   check-for-updates: true
-  # A setting for PacketEvents, we may ask you to change this if you're having issues injecting. If everything is working
-  # fine, don't touch this.
   inject-early: true
-  # This is the time (in ticks - 20 ticks per second - default value is 50 (2.5 seconds)) of how long players should be exempt from certain
-  # checks after velocity gets applied to them via another plugin or something (such as Launchpads, crate plugins, etc etc).
   max-velocity-ticks: 50
-  # This is the max file size (in KB) before the violations.txt should be zipped and put into the logs folder
   max-logs-file-size: 7500
-  # If you have a bungee network and want to have a specific server name for punishment/alert messages, etc
-  server-name: 'Default'
-  # Toggle whether or not Vulcan should utilize transaction packets. Toggling this off will increase performance as we don't
-  # need to use schedulers/runnables to send transactions on the main thread and also to send transactions in the first place,
-  # but will also render some checks such as Blink and Pingspoof useless. (This really isn't a big deal to turn on or off as these
-  #aren't major checks, but if you're obsessed with performance like myself then you can turn it off without any major disadvantages).
-  # If you're running really high player counts then this is recommended to be disabled, it won't really impact anything important.
+  server-name: Default
   transaction: false
-  # Whether or not alert messages should be sent on the main thread or asynchronously. If your server is on bungee, it is recommended to keep this
-  # disabled as sending large chat component messages with so much info (hover, click commands, etc) like the alert commands can
-  # sometimes cause people to be kicked for 'The server you were on has went down' or something.
-  # TLDR:
-  # - Bungeecord Networks: leave this FALSE
-  # - Single servers: set this to TRUE to save some performance
   async-alerts: false
-  # Whether or not the API should be enabled. If you want to hook into Vulcan and do anything fancy, then enable this, however
-  # the majority of people will never use this and disabling it allows for less runnables and more performance as the events dont
-  # need to be called at all (they are also forced to be called sync, so this is a win win performance gain)
   enable-api: true
-  # Whether or not the update checker should be enabled
   update-checker: false
-  # The delay (in ticks, 20 ticks = 1 second) between punishments.
   punishment-delay: 50
-  # This is highly highly recommended to keep false as it can be spoofed by the client, however, if you're using Geyser and
-  # for whatever reason can't get Floodgate to work, then enable this. If you have floodgate-bukkit on your server
-  # and Geyser is working fine, then don't touch this.
   ignore-flags-geyser-client-brand: false
-  # How long we should wait for everything to initialize before players start being checked (in milliseconds). Default
-  # value is 5000ms.
   join-check-wait-time: 5000
-  # Whether or not players with UUID's starting with '000000' should be ignored and not flagged - used for exemptions of
-  # Geyser players if all else fails.
   ignore-geyser-uuids: false
-  # Whether or not we should ignore flags for players whose usernames start with a certain character/string of characters
   ignore-geyser-prefixes: false
-  # The string to be ignored - all players names who start with a * will not be flagged (case sensitive if not symbols)
-  ignore-geyser-prefix: "*"
-  # The max violation (violations above this won't be sent)
+  ignore-geyser-prefix: '*'
   max-alert-violation: 250
-
 hooks:
-  ######################################################################################################################
-  # Bungee Configuration (NOT YET COMPLETE) (NOT YET COMPLETE) (NOT YET COMPLETE) (NOT YET COMPLETE)                   #                                                                              #
-  # enable-hook: Enable/Disable bungee support                                                                         #
-  # commands: If enabled, the commands specified in the check punishment-command will be sent to bungee.               #
-  #           Not the server.                                                                                          #
-  ######################################################################################################################
   bungee:
     enable-hook: false
     commands:
@@ -397,81 +357,30 @@ hooks:
         enabled: false
       punish:
         enabled: false
-
-  ######################################################################################################################
-  # Discord Configuration                                                                                              #
-  # enable-hook: Enable/Disable discord support. You must have DiscordBotAPI installed.                                #
-  # Note: If you have this plugin installed on bungee, you must only have this option enabled on bungee.               #
-  # Requires https://www.spigotmc.org/resources/discordbotapi.86518/                                                   #
-  ######################################################################################################################
   discord:
     enable-hook: false
-    alerts-channel-id: 'channel_id_here'
-    punishment-channel-id: 'channel_id_here'
+    alerts-channel-id: channel_id_here
+    punishment-channel-id: channel_id_here
     command-prefix: '!vulcan'
     alerts-format:
-      color: 'GOLD'
-      title: 'Vulcan Alert'
+      color: GOLD
+      title: Vulcan Alert
       description: '%player% failed %check% (Type: %type%) (VL:%vl%)'
-      image: 'https://crafatar.com/avatars/%uuid%'
+      image: https://crafatar.com/avatars/%uuid%
       content:
-        - 'Info|%info%|false'
-        - 'Location|%world% - X:%x%, Y:%y%, Z:%z%|false'
-        - 'Client Version|%client-version%|false'
-        - 'Client Brand|%client-brand%|false'
-        - 'Client Ping|%ping%|false'
-        - 'Server TPS|%tps%|false'
+        - "Info|%info%|false"
+        - "Location|%world% - X:%x%, Y:%y%, Z:%z%|false"
+        - "Client Version|%client-version%|false"
+        - "Client Brand|%client-brand%|false"
+        - "Client Ping|%ping%|false"
+        - "Server TPS|%tps%|false"
     punishment-format:
-      color: 'RED'
-      title: 'Vulcan Punishment'
+      color: RED
+      title: Vulcan Punishment
       description: '%player% was banned for  %check% (Type: %type%) (VL:%vl%)'
-      image: 'https://crafatar.com/avatars/%uuid%'
+      image: https://crafatar.com/avatars/%uuid%
       content:
-        - 'banned'
-########################################################################################################################
-# AbstractCheck Configuration. Almost all of these options are editable live in game via /vulcan gui
-# enabled: Whether or not the check is enabled or disabled
-# punishable: Whether or not the commands will be executed when the max-violations is reached
-# broadcast-punishment: Whether or not the punishment broadcast (found above) should be sent when the max-violations is reached
-# max-violations: The max violations threshold; when this is hit, the punishment-commands will be executed (if punishable is set to true)
-# alert-interval: How often alerts for this check will be sent, for example, 2 will only send alerts for VL 2, 4, 6, 8, 3 will send alerts
-#                 for violations 3, 6, 9, 12, etc. If you want to reduce the spam in the chat, then you can use this.
-# dont-alert-until: This will make it so that only alerts greater than this value are sent. For example, if you set this to 6,
-#                   then only alerts 6 and higher would be sent (anything less than that is still logged, but not sent to staff)
-# maximum-ping: 100000 is the default value and your ping can't go higher than this without being kicked for KeepAlive timeout.
-#               You won't really ever need to change this as ping doesn't really effect any checks and this can open the possibility
-#               of bypasses with ping spoof, however, the option is here nonetheless.
-# minimum-tps: If the TPS is lower than this value, the check won't fire.
-#
-# buffer:
-# max: Buffer is how many times the player needs to 'fail' the check in order to actually alert. This is basically how
-#         sensitive the check is. I recommend keeping these as default, but if you want the anticheat to be a little less
-#         sensitive or less sensitive you can play with them a little. Don't set them too low or too high or else there will be
-#         too many false flags or it just won't flag at all.
-# multiple: This is what the buffer gets multiplied by after an alert is sent. For example, if you set it to 1, then it wouldn't
-#           do anything since (1 * x) is just x. You can also change this if you want alerts to happen slower, for example
-#           setting it to 0 would make it so when a player reaches the max buffer of 5 for example, their buffer is set to 0
-#           instead of 2.5 (as it would be if the multiple was .5 and not 0.
-# decay: How much the buffer should decay if the player doesn't fail the check. Again, don't really touch this if you don't
-#        know what you're doing as you can cause checks to either not flag at all or false positive a lot. You need to have a
-#        balanced ratio of increasing buffers and decaying the buffer. What we mean by this is that having the decay as 1
-#        and increasing the buffer by 1 isn't really balanced as you can just cheat for a tick and then not do anything and
-#        you will bypass. On the other hand, a buffer decay of .1 against an increase of one is much more balanced as it ensures
-#        that people who constantly fail the checks will continue to alert and be punished yet any little errors will be
-#        filtered out and not alert.
-# hotbar-shuffle:
-# enabled: Whether or not this feature will be enabled. For me.frep.vulcan.spigot.check.impl.combat checks, if the player is failing the check, this will
-#          shuffle around the item in their hand. Funny to watch as they try to frantically figure out what's going on
-# minimum-vl-to-shuffle: The minimum violations that a player has to be at in order for this feature to function.
-# shuffle-every: Interval at which this feature will be executed.
-#
-# random-rotation:
-# enabled: Whether or not this feature will be enabled. When players fail me.frep.vulcan.spigot.check.impl.combat checks, their head will be thrown around
-#          to random locations. Again, pretty funny to watch.
-# minimum-vl-to-randomly-rotate: Minimum violations which the player needs to be at in order for this feature to work.
-# rotate-every: Interval at which this will be executed.
-# For any questions on configuration, please join our Discord or send me on a pm! https://discord.gg/SCNuwUG | frap#0002
-########################################################################################################################
+        - "banned"
 checks:
   combat:
     aim:
@@ -485,11 +394,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .75
-          decay: .5
+          multiple: 0.75
+          decay: 0.5
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -508,11 +417,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
-          decay: .65
+          multiple: 0.5
+          decay: 0.65
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -531,11 +440,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -554,11 +463,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 8
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -577,11 +486,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .75
-          decay: .25
+          multiple: 0.75
+          decay: 0.25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -600,11 +509,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 12
-          multiple: .5
-          decay: .45
+          multiple: 0.5
+          decay: 0.45
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -623,11 +532,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -646,11 +555,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 7
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -669,11 +578,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 7
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -692,10 +601,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 7
-          multiple: .5
+          multiple: 0.5
           decay: 1.25
         hotbar-shuffle:
           enabled: false
@@ -715,11 +624,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -738,10 +647,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 7
-          multiple: .45
+          multiple: 0.45
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -760,11 +669,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .4
-          decay: .25
+          multiple: 0.4
+          decay: 0.25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -783,11 +692,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .5
-          decay: .5
+          multiple: 0.5
+          decay: 0.5
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -806,11 +715,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -829,11 +738,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .4
-          decay: .25
+          multiple: 0.4
+          decay: 0.25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -852,11 +761,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -875,11 +784,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 20
-          multiple: .3
-          decay: .5
+          multiple: 0.3
+          decay: 0.5
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -898,11 +807,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 20
-          multiple: .25
-          decay: .5
+          multiple: 0.25
+          decay: 0.5
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -921,11 +830,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -944,11 +853,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .25
-          decay: .125
+          multiple: 0.25
+          decay: 0.125
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -967,11 +876,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 16
-          multiple: .25
-          decay: .125
+          multiple: 0.25
+          decay: 0.125
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -991,7 +900,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1010,7 +919,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1029,11 +938,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .5
-          decay: .5
+          multiple: 0.5
+          decay: 0.5
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1042,8 +951,6 @@ checks:
           enabled: false
           minimum-vl-to-randomly-rotate: 2
           rotate-every: 2
-    # AutoClicker checks not really recommended for banning since you can't ever be 100% certain, if you crank up
-    # the violations you should be fine but it's all just probability / statistics.
     autoclicker:
       a:
         enabled: true
@@ -1055,7 +962,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         max-cps: 30
       b:
         enabled: true
@@ -1067,11 +974,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .5
+          multiple: 0.5
+          decay: 0.5
       c:
         enabled: true
         punishable: false
@@ -1082,10 +989,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
+          multiple: 0.5
           decay: 1
       d:
         enabled: true
@@ -1097,11 +1004,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .5
+          multiple: 0.5
+          decay: 0.5
       e:
         enabled: true
         punishable: false
@@ -1112,11 +1019,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
       f:
         enabled: true
         punishable: false
@@ -1127,10 +1034,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
+          multiple: 0.5
           decay: 1.25
       g:
         enabled: true
@@ -1142,10 +1049,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .25
+          multiple: 0.25
           decay: 1.25
       h:
         enabled: true
@@ -1157,10 +1064,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
+          multiple: 0.5
           decay: 1
       i:
         enabled: true
@@ -1172,10 +1079,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .5
+          multiple: 0.5
           decay: 1.25
       j:
         enabled: true
@@ -1187,10 +1094,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
+          multiple: 0.5
           decay: 1.25
       k:
         enabled: true
@@ -1202,11 +1109,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
       l:
         enabled: true
         punishable: false
@@ -1217,10 +1124,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .25
+          multiple: 0.25
           decay: 1
       m:
         enabled: true
@@ -1232,11 +1139,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .25
-          decay: .75
+          multiple: 0.25
+          decay: 0.75
       n:
         enabled: true
         punishable: false
@@ -1247,11 +1154,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 25
-          multiple: .15
-          decay: .75
+          multiple: 0.15
+          decay: 0.75
       o:
         enabled: true
         punishable: false
@@ -1262,10 +1169,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .25
+          multiple: 0.25
           decay: 1.25
       p:
         enabled: true
@@ -1277,10 +1184,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .25
+          multiple: 0.25
       q:
         enabled: true
         punishable: false
@@ -1291,10 +1198,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 35
-          multiple: .3
+          multiple: 0.3
           decay: 2.0
       r:
         enabled: true
@@ -1306,10 +1213,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 50
-          multiple: .15
+          multiple: 0.15
           decay: 10
       s:
         enabled: true
@@ -1321,11 +1228,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 30
-          multiple: .15
-          decay: .825
+          multiple: 0.15
+          decay: 0.825
       t:
         enabled: true
         punishable: false
@@ -1336,23 +1243,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 25
-          multiple: .15
-          decay: .75
-      u:
-        enabled: true
-        punishable: false
-        broadcast-punishment: false
-        max-violations: 25
-        alert-interval: 1
-        dont-alert-until: 20
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        max-cps: 35
+          multiple: 0.15
+          decay: 0.75
     reach:
       a:
         enabled: true
@@ -1364,11 +1259,11 @@ checks:
         maximum-ping: 200
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .25
-          decay: .035
+          multiple: 0.25
+          decay: 0.035
         max-reach: 3.03
       b:
         enabled: true
@@ -1380,11 +1275,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .25
-          decay: .225
+          multiple: 0.25
+          decay: 0.225
         max-reach: 3.15
     fastbow:
       a:
@@ -1397,11 +1292,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .125
+          multiple: 0.5
+          decay: 0.125
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1421,11 +1316,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .05
+          multiple: 0.5
+          decay: 0.05
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1444,11 +1339,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .05
+          multiple: 0.5
+          decay: 0.05
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1468,11 +1363,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .5
+          multiple: 0.5
+          decay: 0.5
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1491,11 +1386,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .6
-          decay: .5
+          multiple: 0.6
+          decay: 0.5
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1514,11 +1409,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
         hotbar-shuffle:
           enabled: false
           minimum-vl-to-shuffle: 2
@@ -1537,7 +1432,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       e:
         enabled: true
         punishable: true
@@ -1548,7 +1443,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       f:
         enabled: true
         punishable: true
@@ -1559,10 +1454,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 10
-          multiple: .25
+          multiple: 0.25
           decay: 2
       g:
         enabled: true
@@ -1574,11 +1469,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .05
+          multiple: 0.5
+          decay: 0.05
       h:
         enabled: true
         punishable: true
@@ -1589,7 +1484,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       i:
         enabled: true
         punishable: true
@@ -1600,11 +1495,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
       j:
         enabled: true
         punishable: true
@@ -1615,11 +1510,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .5
+          multiple: 0.5
+          decay: 0.5
       k:
         enabled: true
         punishable: true
@@ -1630,11 +1525,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
     hitbox:
       a:
         enabled: true
@@ -1646,12 +1541,12 @@ checks:
         maximum-ping: 200
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .15
-          decay: .225
-        max-angle: .42
+          multiple: 0.15
+          decay: 0.225
+        max-angle: 0.42
       b:
         enabled: true
         punishable: true
@@ -1662,11 +1557,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 8
-          multiple: .15
-          decay: .25
+          multiple: 0.15
+          decay: 0.25
         max-angle: 45
     velocity:
       a:
@@ -1679,11 +1574,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
       b:
         enabled: true
         punishable: false
@@ -1694,11 +1589,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .35
-          decay: .225
+          multiple: 0.35
+          decay: 0.225
       c:
         enabled: true
         punishable: false
@@ -1709,10 +1604,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 10
-          multiple: .5
+          multiple: 0.5
           decay: 2.25
       d:
         enabled: true
@@ -1724,11 +1619,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 8
-          multiple: .25
-          decay: .65
+          multiple: 0.25
+          decay: 0.65
       e:
         enabled: true
         punishable: false
@@ -1739,11 +1634,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 8
-          multiple: .3
-          decay: .35
+          multiple: 0.3
+          decay: 0.35
   movement:
     noslow:
       a:
@@ -1756,26 +1651,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .25
-          decay: .15
-      b:
-        enabled: true
-        punishable: true
-        broadcast-punishment: false
-        max-violations: 15
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 8
-          multiple: .25
-          decay: .15
+          multiple: 0.25
+          decay: 0.15
       c:
         enabled: true
         punishable: true
@@ -1786,11 +1666,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 7
-          multiple: .5
-          decay: .15
+          multiple: 0.5
+          decay: 0.15
       d:
         enabled: true
         punishable: true
@@ -1801,11 +1681,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .5
-          decay: .15
+          multiple: 0.5
+          decay: 0.15
     motion:
       a:
         enabled: true
@@ -1817,11 +1697,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
       b:
         enabled: true
         punishable: true
@@ -1832,11 +1712,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
       c:
         enabled: true
         punishable: true
@@ -1847,11 +1727,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 1
-          multiple: .5
-          decay: .05
+          multiple: 0.5
+          decay: 0.05
       d:
         enabled: true
         punishable: true
@@ -1862,11 +1742,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 2
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
       e:
         enabled: true
         punishable: true
@@ -1877,11 +1757,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 1
-          multiple: .5
-          decay: .05
+          multiple: 0.5
+          decay: 0.05
       f:
         enabled: true
         punishable: true
@@ -1892,11 +1772,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .45
-          decay: .125
+          multiple: 0.45
+          decay: 0.125
       g:
         enabled: true
         punishable: true
@@ -1907,11 +1787,11 @@ checks:
         maximum-ping: 150
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 4
-          multiple: .25
-          decay: .325
+          multiple: 0.25
+          decay: 0.325
     jump:
       a:
         enabled: true
@@ -1923,11 +1803,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 2
-          multiple: .25
-          decay: .15
+          multiple: 0.25
+          decay: 0.15
       b:
         enabled: true
         punishable: false
@@ -1938,11 +1818,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 2
-          multiple: .25
-          decay: .15
+          multiple: 0.25
+          decay: 0.15
     step:
       a:
         enabled: false
@@ -1954,7 +1834,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       b:
         enabled: false
         punishable: false
@@ -1965,26 +1845,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .25
-          decay: .35
-      c:
-        enabled: false
-        punishable: false
-        broadcast-punishment: false
-        max-violations: 25
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 4
-          multiple: .25
-          decay: .125
+          multiple: 0.25
+          decay: 0.35
     boatfly:
       a:
         enabled: false
@@ -1996,11 +1861,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .33
-          decay: .125
+          multiple: 0.33
+          decay: 0.125
       b:
         enabled: false
         punishable: false
@@ -2011,11 +1876,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
     vclip:
       a:
         enabled: false
@@ -2027,7 +1892,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% &c[Vulcan] Unfair Advantage'
+          - "kick %player% &c[Vulcan] Unfair Advantage"
     entityspeed:
       a:
         enabled: true
@@ -2039,11 +1904,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
     elytra:
       a:
         enabled: false
@@ -2055,7 +1920,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         max-speed: 4.1
       b:
         enabled: false
@@ -2067,11 +1932,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 8
-          multiple: .5
-          decay: .125
+          multiple: 0.5
+          decay: 0.125
       c:
         enabled: false
         punishable: false
@@ -2082,11 +1947,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% &c[Vulcan] Unfair Advantage'
+          - "kick %player% &c[Vulcan] Unfair Advantage"
         buffer:
           max: 20
-          multiple: .5
-          decay: .125
+          multiple: 0.5
+          decay: 0.125
     speed:
       a:
         enabled: true
@@ -2098,11 +1963,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .35
-          decay: .125
+          multiple: 0.35
+          decay: 0.125
       b:
         enabled: true
         punishable: true
@@ -2113,11 +1978,11 @@ checks:
         maximum-ping: 150
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .25
-          decay: .045
+          multiple: 0.25
+          decay: 0.045
       c:
         enabled: true
         punishable: true
@@ -2128,11 +1993,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .25
-          decay: .045
+          multiple: 0.25
+          decay: 0.045
     fastclimb:
       a:
         enabled: false
@@ -2144,11 +2009,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
-          decay: .125
+          multiple: 0.5
+          decay: 0.125
     wallclimb:
       a:
         enabled: true
@@ -2160,11 +2025,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .35
-          decay: .225
+          multiple: 0.35
+          decay: 0.225
     jesus:
       a:
         enabled: false
@@ -2176,11 +2041,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .025
+          multiple: 0.5
+          decay: 0.025
       b:
         enabled: false
         punishable: false
@@ -2191,11 +2056,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
-          decay: .175
+          multiple: 0.5
+          decay: 0.175
       c:
         enabled: false
         punishable: false
@@ -2206,11 +2071,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 10
-          multiple: .45
-          decay: .75
+          multiple: 0.45
+          decay: 0.75
       d:
         enabled: false
         punishable: false
@@ -2221,11 +2086,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .45
-          decay: .175
+          multiple: 0.45
+          decay: 0.175
       e:
         enabled: false
         punishable: false
@@ -2236,11 +2101,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 10
-          multiple: .25
-          decay: .175
+          multiple: 0.25
+          decay: 0.175
     flight:
       a:
         enabled: false
@@ -2252,11 +2117,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .65
-          decay: .275
+          multiple: 0.65
+          decay: 0.275
       b:
         enabled: true
         punishable: true
@@ -2267,11 +2132,11 @@ checks:
         maximum-ping: 300
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .5
-          decay: .275
+          multiple: 0.5
+          decay: 0.275
       c:
         enabled: true
         punishable: true
@@ -2282,11 +2147,11 @@ checks:
         maximum-ping: 200
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 4
-          multiple: .75
-          decay: .225
+          multiple: 0.75
+          decay: 0.225
       d:
         enabled: true
         punishable: true
@@ -2297,11 +2162,11 @@ checks:
         maximum-ping: 300
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 4
-          multiple: .35
-          decay: .275
+          multiple: 0.35
+          decay: 0.275
       e:
         enabled: false
         punishable: false
@@ -2312,11 +2177,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% Cheating -s'
+          - "kick %player% Cheating -s"
         buffer:
           max: 3
-          multiple: .4
-          decay: .5
+          multiple: 0.4
+          decay: 0.5
     sprint:
       a:
         enabled: true
@@ -2328,11 +2193,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .25
-          decay: .4
+          multiple: 0.25
+          decay: 0.4
       b:
         enabled: true
         punishable: false
@@ -2343,11 +2208,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 7
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
     strafe:
       a:
         enabled: false
@@ -2359,11 +2224,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .5
-          decay: .05
+          multiple: 0.5
+          decay: 0.05
       b:
         enabled: false
         punishable: false
@@ -2374,11 +2239,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .15
-          decay: .075
+          multiple: 0.15
+          decay: 0.075
   player:
     fastuse:
       a:
@@ -2391,7 +2256,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
     fastplace:
       a:
         enabled: true
@@ -2403,7 +2268,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         max-blocks: 15
     fastbreak:
       a:
@@ -2416,11 +2281,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .25
-          decay: .5
+          multiple: 0.25
+          decay: 0.5
     tower:
       a:
         enabled: false
@@ -2432,11 +2297,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
     scaffold:
       a:
         enabled: true
@@ -2448,7 +2313,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       b:
         enabled: true
         punishable: true
@@ -2459,7 +2324,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       c:
         enabled: true
         punishable: true
@@ -2470,11 +2335,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .25
-          decay: .5
+          multiple: 0.25
+          decay: 0.5
       d:
         enabled: true
         punishable: false
@@ -2485,11 +2350,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .25
-          decay: .5
+          multiple: 0.25
+          decay: 0.5
       e:
         enabled: true
         punishable: true
@@ -2500,11 +2365,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .25
-          decay: .5
+          multiple: 0.25
+          decay: 0.5
       f:
         enabled: true
         punishable: true
@@ -2515,11 +2380,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
       g:
         enabled: true
         punishable: false
@@ -2530,11 +2395,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
       h:
         enabled: true
         punishable: false
@@ -2545,11 +2410,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 8
-          multiple: .25
-          decay: .35
+          multiple: 0.25
+          decay: 0.35
       i:
         enabled: true
         punishable: true
@@ -2560,7 +2425,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       j:
         enabled: true
         punishable: true
@@ -2571,7 +2436,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       k:
         enabled: true
         punishable: true
@@ -2582,11 +2447,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .35
+          multiple: 0.5
+          decay: 0.35
         max-blocks: 6
       l:
         enabled: true
@@ -2598,11 +2463,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .5
-          decay: .025
+          multiple: 0.5
+          decay: 0.025
       m:
         enabled: true
         punishable: false
@@ -2613,11 +2478,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
     timer:
       a:
         enabled: false
@@ -2629,10 +2494,10 @@ checks:
         maximum-ping: 300
         minimum-tps: 19.8
         punishment-commands:
-          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+          - "minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException"
         buffer:
           max: 35
-          multiple: .425
+          multiple: 0.425
           decay: 1.85
         max-speed: 1.05
       b:
@@ -2645,12 +2510,12 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.8
         punishment-commands:
-          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+          - "minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException"
         buffer:
           max: 35
-          multiple: .5
+          multiple: 0.5
           decay: 4.0
-        min-speed: .81
+        min-speed: 0.81
       c:
         enabled: true
         punishable: false
@@ -2661,10 +2526,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.8
         punishment-commands:
-          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+          - "minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException"
         buffer:
           max: 3
-          multiple: .25
+          multiple: 0.25
           decay: 1
         max-packets: 23
       d:
@@ -2677,11 +2542,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.8
         punishment-commands:
-          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+          - "minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException"
         buffer:
           max: 2
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
         max-balance: 50
     hackedclient:
       a:
@@ -2694,7 +2559,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
     interact:
       a:
         enabled: true
@@ -2706,11 +2571,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
         max-distance: 6.25
       b:
         enabled: true
@@ -2722,34 +2587,12 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 7
-          multiple: .25
-          decay: .75
-        max-distance: 10.00
-      c:
-        enabled: true
-        punishable: false
-        broadcast-punishment: false
-        max-violations: 20
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-      d:
-        enabled: true
-        punishable: false
-        broadcast-punishment: false
-        max-violations: 20
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
+          multiple: 0.25
+          decay: 0.75
+        max-distance: 10.0
       e:
         enabled: true
         punishable: false
@@ -2760,11 +2603,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
-          decay: .35
+          multiple: 0.5
+          decay: 0.35
     baritone:
       a:
         enabled: false
@@ -2776,11 +2619,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 30
-          multiple: .5
-          decay: .5
+          multiple: 0.5
+          decay: 0.5
       b:
         enabled: false
         punishable: false
@@ -2791,11 +2634,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .5
-          decay: .05
+          multiple: 0.5
+          decay: 0.05
     crash:
       a:
         enabled: false
@@ -2807,7 +2650,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       b:
         enabled: false
         punishable: true
@@ -2818,11 +2661,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
       c:
         enabled: false
         punishable: true
@@ -2833,7 +2676,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
     badpackets:
       a:
         enabled: true
@@ -2845,11 +2688,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
       b:
         enabled: true
         punishable: true
@@ -2860,7 +2703,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       c:
         enabled: true
         punishable: true
@@ -2871,7 +2714,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       d:
         enabled: true
         punishable: true
@@ -2882,11 +2725,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .01
+          multiple: 0.5
+          decay: 0.01
       e:
         enabled: true
         punishable: true
@@ -2897,7 +2740,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       f:
         enabled: true
         punishable: false
@@ -2908,7 +2751,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       g:
         enabled: true
         punishable: true
@@ -2919,7 +2762,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       h:
         enabled: false
         punishable: false
@@ -2930,7 +2773,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       i:
         enabled: true
         punishable: true
@@ -2941,7 +2784,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       j:
         enabled: true
         punishable: true
@@ -2952,7 +2795,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       k:
         enabled: true
         punishable: true
@@ -2963,11 +2806,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .4
+          multiple: 0.5
+          decay: 0.4
       l:
         enabled: true
         punishable: true
@@ -2978,11 +2821,11 @@ checks:
         maximum-ping: 200
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .4
-          decay: .25
+          multiple: 0.4
+          decay: 0.25
       m:
         enabled: true
         punishable: true
@@ -2993,11 +2836,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .33
-          decay: .25
+          multiple: 0.33
+          decay: 0.25
       n:
         enabled: true
         punishable: true
@@ -3008,10 +2851,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 15
-          multiple: .25
+          multiple: 0.25
           decay: 1
       o:
         enabled: true
@@ -3023,11 +2866,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .15
+          multiple: 0.5
+          decay: 0.15
       p:
         enabled: true
         punishable: false
@@ -3038,11 +2881,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .15
+          multiple: 0.5
+          decay: 0.15
       q:
         enabled: true
         punishable: true
@@ -3053,11 +2896,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .15
+          multiple: 0.5
+          decay: 0.15
       r:
         enabled: true
         punishable: true
@@ -3068,11 +2911,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
       s:
         enabled: true
         punishable: true
@@ -3083,10 +2926,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 12
-          multiple: .45
+          multiple: 0.45
           decay: 1.25
       t:
         enabled: true
@@ -3098,7 +2941,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       u:
         enabled: true
         punishable: true
@@ -3109,7 +2952,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       v:
         enabled: true
         punishable: true
@@ -3120,11 +2963,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .5
-          decay: .075
+          multiple: 0.5
+          decay: 0.075
       w:
         enabled: true
         punishable: true
@@ -3135,11 +2978,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 8
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
       x:
         enabled: true
         punishable: false
@@ -3150,11 +2993,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 6
-          multiple: .5
-          decay: .35
+          multiple: 0.5
+          decay: 0.35
       y:
         enabled: true
         punishable: true
@@ -3165,7 +3008,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
       z:
         enabled: false
         punishable: false
@@ -3176,11 +3019,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'kick %player% &cBoat Glitch Detected'
+          - "kick %player% &cBoat Glitch Detected"
         buffer:
           max: 8
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.75
     inventory:
       a:
         enabled: true
@@ -3192,11 +3035,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 2
-          multiple: .25
-          decay: .25
+          multiple: 0.25
+          decay: 0.25
     blink:
       a:
         enabled: true
@@ -3208,11 +3051,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+          - "minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException"
         buffer:
           max: 3
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
     anticactus:
       a:
         enabled: false
@@ -3224,11 +3067,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 5
-          multiple: .25
-          decay: .125
+          multiple: 0.25
+          decay: 0.125
     pingspoof:
       a:
         enabled: false
@@ -3240,10 +3083,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+          - "minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException"
         buffer:
           max: 200
-          multiple: .25
+          multiple: 0.25
           decay: 20
       b:
         enabled: true
@@ -3255,10 +3098,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+          - "minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException"
         buffer:
           max: 10
-          multiple: .25
+          multiple: 0.25
           decay: 2
       c:
         enabled: false
@@ -3270,10 +3113,10 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException'
+          - "minecraft:kick %player% Internal Exception: io.netty.handler.timeout.ReadTimeoutException"
         buffer:
           max: 100
-          multiple: .1
+          multiple: 0.1
           decay: 10
         max-ping: 10000
     invalid:
@@ -3287,26 +3130,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 4
-          multiple: .5
-          decay: .4
-      b:
-        enabled: true
-        punishable: false
-        broadcast-punishment: false
-        max-violations: 10
-        alert-interval: 1
-        dont-alert-until: 1
-        maximum-ping: 100000
-        minimum-tps: 19.0
-        punishment-commands:
-          - 'corneaban %player%'
-        buffer:
-          max: 4
-          multiple: .5
-          decay: .75
+          multiple: 0.5
+          decay: 0.4
       c:
         enabled: true
         punishable: false
@@ -3317,11 +3145,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .01
+          multiple: 0.5
+          decay: 0.01
       d:
         enabled: true
         punishable: false
@@ -3332,11 +3160,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 8
-          multiple: .25
-          decay: .5
+          multiple: 0.25
+          decay: 0.5
       e:
         enabled: true
         punishable: true
@@ -3347,11 +3175,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .01
+          multiple: 0.5
+          decay: 0.01
       f:
         enabled: true
         punishable: false
@@ -3362,11 +3190,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 1
-          multiple: .5
-          decay: .01
+          multiple: 0.5
+          decay: 0.01
     groundspoof:
       a:
         enabled: false
@@ -3378,11 +3206,11 @@ checks:
         maximum-ping: 100
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .25
+          multiple: 0.5
+          decay: 0.25
       b:
         enabled: true
         punishable: false
@@ -3393,11 +3221,11 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         buffer:
           max: 3
-          multiple: .5
-          decay: .125
+          multiple: 0.5
+          decay: 0.125
     improbable:
       a:
         enabled: true
@@ -3409,7 +3237,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         max-combat-violations: 150
       b:
         enabled: true
@@ -3421,7 +3249,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         max-movement-violations: 300
       c:
         enabled: true
@@ -3433,7 +3261,7 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         max-player-violations: 150
       d:
         enabled: true
@@ -3445,5 +3273,5 @@ checks:
         maximum-ping: 100000
         minimum-tps: 19.0
         punishment-commands:
-          - 'corneaban %player%'
+          - "corneaban %player%"
         max-autoclicker-violations: 200
